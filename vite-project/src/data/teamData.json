@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Michael Kemi",
+    "role": "Founder & CEO",
+    "image": "https://randomuser.me/api/portraits/men/32.jpg",
+    "bio": "Visionary leader dedicated to building an e-commerce brand that redefines online shopping in Africa and beyond.",
+    "socials": {
+      "linkedin": "https://linkedin.com/in/michaelkemi",
+      "twitter": "https://twitter.com/michaelkemi",
+      "instagram": "https://instagram.com/michaelkemi"
+    }
+  },
+  {
+    "name": "Sarah Johnson",
+    "role": "Head of Marketing",
+    "image": "https://randomuser.me/api/portraits/women/44.jpg",
+    "bio": "Passionate about connecting people to products they love through modern branding and digital campaigns.",
+    "socials": {
+      "linkedin": "https://linkedin.com/in/sarahjohnson",
+      "twitter": "https://twitter.com/sarahjohnson",
+      "instagram": "https://instagram.com/sarahjohnson"
+    }
+  },
+  {
+    "name": "David Lee",
+    "role": "Chief Technology Officer",
+    "image": "https://randomuser.me/api/portraits/men/75.jpg",
+    "bio": "Focused on innovation, user experience, and building scalable platforms that empower seamless shopping.",
+    "socials": {
+      "linkedin": "https://linkedin.com/in/davidlee",
+      "twitter": "https://twitter.com/davidlee",
+      "instagram": "https://instagram.com/davidlee"
+    }
+  },
+  {
+    "name": "Amaka Chukwu",
+    "role": "Customer Experience Manager",
+    "image": "https://randomuser.me/api/portraits/women/68.jpg",
+    "bio": "Committed to ensuring every customer interaction with Zevoria is smooth, helpful, and memorable.",
+    "socials": {
+      "linkedin": "https://linkedin.com/in/amakachukwu",
+      "twitter": "https://twitter.com/amakachukwu",
+      "instagram": "https://instagram.com/amakachukwu"
+    }
+  },
+  {
+    "name": "Liam O'Connor",
+    "role": "Logistics & Operations Lead",
+    "image": "https://randomuser.me/api/portraits/men/76.jpg",
+    "bio": "Expert in supply chain management, ensuring timely delivery and efficient operations across all markets.",
+    "socials": {
+      "linkedin": "https://linkedin.com/in/liamoconnor",
+      "twitter": "https://twitter.com/liamoconnor",
+      "instagram": "https://instagram.com/liamoconnor"
+    }
+  },
+  {
+    "name": "Aisha Bello",
+    "role": "Product Development Specialist",
+    "image": "https://randomuser.me/api/portraits/women/69.jpg",
+    "bio": "Passionate about creating innovative products that enhance the shopping experience and meet customer needs.",
+    "socials": {
+      "linkedin": "https://linkedin.com/in/aishabello",
+      "twitter": "https://twitter.com/aishabello",
+      "instagram": "https://instagram.com/aishabello"
+    }
+  },
+  {
+    "name": "Carlos Mendes",
+    "role": "Finance Director",
+    "image": "https://randomuser.me/api/portraits/men/45.jpg",
+    "bio": "Strategic thinker with a knack for numbers, dedicated to driving financial success and sustainability.",
+    "socials": {
+      "linkedin": "https://linkedin.com/in/carlosmendes",
+      "twitter": "https://twitter.com/carlosmendes",
+      "instagram": "https://instagram.com/carlosmendes"
+    }
+  },
+  {
+    "name": "Emily Zhang",
+    "role": "Creative Director",
+    "image": "https://randomuser.me/api/portraits/women/45.jpg",
+    "bio": "Innovative thinker with a passion for design, dedicated to creating visually stunning and effective marketing campaigns.",
+    "socials": {
+      "linkedin": "https://linkedin.com/in/emilyzhang",
+      "twitter": "https://twitter.com/emilyzhang",
+      "instagram": "https://instagram.com/emilyzhang"
+    }
+  }
+]

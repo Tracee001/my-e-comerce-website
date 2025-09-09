@@ -1,77 +1,130 @@
 import React, { useState } from "react";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const [showPass, setShowPass] = useState(false);
-  const [error, setError] = useState("");
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+    remember: false,
+  });
 
-  const handleLogin = (e) => {
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setForm({
+      ...form,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setError("");
-    if (!email || !pass) {
-      setError("Please enter both email and password.");
-      return;
-    }
-    // Simulate login
-    alert(`Logged in as ${email}`);
+    alert(`Logged in as ${form.email}`);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form
-        onSubmit={handleLogin}
-        className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg"
-      >
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Sign In to Your Account</h2>
-        {error && (
-          <div className="mb-4 text-red-600 bg-red-100 p-2 rounded">{error}</div>
-        )}
-        <div className="mb-4">
-          <label className="block mb-1 text-gray-700 font-medium">Email</label>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            autoComplete="email"
-            required
-          />
+    <section className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 md:p-10">
+        {/* Title */}
+        <div className="text-center mb-8">
+          <h1
+            className="text-3xl font-bold mb-2"
+            style={{
+              background: "linear-gradient(90deg, #e52d27, #b721ff)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            Login
+          </h1>
+          <p className="text-gray-600 mt-2 text-sm">
+            Please enter your credentials to access your account.
+          </p>
         </div>
-        <div className="mb-4">
-          <label className="block mb-1 text-gray-700 font-medium">Password</label>
-          <div className="relative">
+
+        {/* Login Form */}
+        <form className="space-y-5" onSubmit={handleSubmit}>
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Email Address
+            </label>
             <input
-              type={showPass ? "text" : "password"}
-              placeholder="Enter your password"
-              className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={pass}
-              onChange={(e) => setPass(e.target.value)}
-              autoComplete="current-password"
+              type="email"
+              name="email"
+              id="email"
+              className="w-full px-4 py-2 border rounded-md text-gray-900 border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+              placeholder="Enter your email"
+              value={form.email}
+              onChange={handleChange}
               required
             />
-            <button
-              type="button"
-              className="absolute right-2 top-2 text-gray-500 text-sm"
-              onClick={() => setShowPass((prev) => !prev)}
-              tabIndex={-1}
-            >
-              {showPass ? "Hide" : "Show"}
-            </button>
           </div>
+
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              className="w-full px-4 py-2 border rounded-md text-gray-900 border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+              placeholder="Enter your password"
+              value={form.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          {/* Remember & Forgot Password */}
+          <div className="flex items-center justify-between text-sm">
+            <label className="flex items-center gap-2 text-gray-600">
+              <input
+                type="checkbox"
+                name="remember"
+                checked={form.remember}
+                onChange={handleChange}
+                className="accent-purple-600"
+              />
+              Remember me
+            </label>
+            <a href="/reset" className="text-purple-600 hover:underline">
+              Forgot password?
+            </a>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full py-2 rounded-md font-semibold text-white"
+            style={{
+              background: "linear-gradient(90deg, #1e3c72 0%, #2a5298 50%, #e52d27 100%)",
+            }}
+          >
+            Login
+          </button>
+        </form>
+
+        {/* Divider */}
+         <div className="my-6 flex items-center">
+          <hr className="flex-grow border-gray-300" />
+          <span className="px-3 text-gray-500 text-sm">or</span>
+          <hr className="flex-grow border-gray-300" />
         </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition"
-        >
-          Login
-        </button>
-        <div className="mt-4 text-center text-gray-500 text-sm">
-          Don&apos;t have an account? <a href="#" className="text-blue-600 hover:underline">Sign up</a>
-        </div>
-      </form>
-    </div>
+
+        {/* Sign Up Link */}
+        <p className="text-center text-gray-600 mt-4 text-sm">
+          Don’t have an account?{" "}
+          <a href="/register" className="text-purple-600 hover:underline font-medium">
+            Sign up
+          </a>
+        </p>
+      </div>
+    </section>
   );
 };
 
