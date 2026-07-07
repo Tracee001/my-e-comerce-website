@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { loginSeller } from "../utils/auth";
 
 const Login = () => {
   const [form, setForm] = useState({
@@ -6,6 +8,7 @@ const Login = () => {
     password: "",
     remember: false,
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -17,7 +20,17 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Logged in as ${form.email}`);
+    try {
+      const seller = loginSeller(form.email, form.password);
+      // If user didn't choose 'remember', keep session-only
+      if (!form.remember) {
+        sessionStorage.setItem("currentSeller", JSON.stringify(seller));
+        localStorage.removeItem("currentSeller");
+      }
+      navigate("/dashboard");
+    } catch (err) {
+      alert(err.message || "Login failed");
+    }
   };
 
   return (

@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { getCurrentCustomer } from "../utils/auth";
+import { addCustomerOrder } from "../utils/customerOrders";
 import { CheckCircle, Copy, ArrowLeft, Printer, Share2 } from "lucide-react";
 
 const Payment = () => {
   const { cartItems, clearCart } = useCart();
   const navigate = useNavigate();
-  const [isPaid, setIsPaid] = useState(false);
   const [orderNumber, setOrderNumber] = useState("");
   const [showReceipt, setShowReceipt] = useState(false);
+  const [completedOrder, setCompletedOrder] = useState(null);
   
   // Calculate totals
   const subtotal = cartItems.reduce((sum, item) => {
@@ -45,10 +47,32 @@ const Payment = () => {
   };
 
   const handleConfirmPayment = () => {
-    // Generate order number
+    const customer = getCurrentCustomer();
+    if (!customer) {
+      alert("Please login or register as a customer before completing payment.");
+      navigate("/customer/login");
+      return;
+    }
+
     const orderNum = "ZV" + Date.now().toString().slice(-8);
+    const order = {
+      id: `order-${Date.now()}`,
+      orderNumber: orderNum,
+      customerId: customer.id,
+      createdAt: new Date().toISOString(),
+      total,
+      items: cartItems.map((item) => ({
+        id: item.id,
+        title: item.title,
+        qty: item.qty,
+        price: item.price,
+        image: item.image,
+      })),
+    };
+
+    addCustomerOrder(customer.id, order);
+    setCompletedOrder(order);
     setOrderNumber(orderNum);
-    setIsPaid(true);
     setShowReceipt(true);
     clearCart();
   };
@@ -83,7 +107,7 @@ const Payment = () => {
             {/* Items */}
             <div className="border-b pb-4 mb-4">
               <h3 className="font-semibold text-gray-800 mb-3">Items Ordered</h3>
-              {cartItems.map((item, index) => (
+              {(completedOrder?.items || []).map((item, index) => (
                 <div key={index} className="flex justify-between text-sm mb-2">
                   <span className="text-gray-600">{item.title} x {item.qty}</span>
                   <span className="font-medium">{formatPrice(item.price * item.qty)}</span>

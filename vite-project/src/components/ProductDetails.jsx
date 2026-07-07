@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { ondoSellerProducts } from "../data/ondoSellers";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -12,12 +13,33 @@ const ProductDetail = () => {
     let url = "";
     if (id.startsWith("f-")) {
       url = `https://fakestoreapi.com/products/${id.replace("f-", "")}`;
+      fetch(url).then(res => res.json()).then(data => setProduct(data)).catch(()=>setProduct(null));
     } else if (id.startsWith("d-")) {
       url = `https://dummyjson.com/products/${id.replace("d-", "")}`;
+      fetch(url).then(res => res.json()).then(data => setProduct(data)).catch(()=>setProduct(null));
+    } else if (id.startsWith("p-")) {
+      // Seller product stored in localStorage under keys sellerProducts:<sellerId>
+      const prefix = "sellerProducts:";
+      let found = null;
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (!key || !key.startsWith(prefix)) continue;
+        try {
+          const list = JSON.parse(localStorage.getItem(key) || "[]");
+          const match = list.find((it) => it.id === id);
+          if (match) {
+            found = match;
+            break;
+          }
+        } catch {
+          continue;
+        }
+      }
+      setProduct(found);
+    } else {
+      const staticProduct = ondoSellerProducts.find((item) => item.id === id);
+      setProduct(staticProduct || null);
     }
-    fetch(url)
-      .then(res => res.json())
-      .then(data => setProduct(data));
   }, [id]);
 
   if (!product) return <div className="p-8 text-center">Loading...</div>;
@@ -32,6 +54,7 @@ const ProductDetail = () => {
         />
         <div>
           <h2 className="text-3xl font-bold mb-2">{product.title}</h2>
+          <p className="text-sm text-gray-500 mb-1">Sold by {product.sellerName || "Marketplace"}</p>
           {product.brand && <p className="text-lg text-gray-600 mb-2">{product.brand}</p>}
           <p className="text-xl text-red-600 font-bold mb-4">${product.price}</p>
           <p className="mb-4 text-gray-700">{product.description}</p>

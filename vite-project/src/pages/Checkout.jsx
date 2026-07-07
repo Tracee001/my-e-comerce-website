@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { getCurrentCustomer } from "../utils/auth";
 import { Trash2, Plus, Minus, ShoppingCart } from "lucide-react";
 
 const Checkout = () => {
@@ -187,7 +188,14 @@ const Checkout = () => {
               
               {/* Checkout Button */}
               <button 
-                onClick={() => navigate("/payment")}
+                onClick={() => {
+                  if (!getCurrentCustomer()) {
+                    alert("Please login as a customer to proceed with checkout.");
+                    navigate("/customer/login");
+                    return;
+                  }
+                  navigate("/payment");
+                }}
                 className="w-full bg-orange-500 text-white py-3 rounded-lg font-semibold mt-4 hover:bg-orange-600 transition"
               >
                 PROCEED TO CHECKOUT

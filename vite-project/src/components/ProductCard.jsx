@@ -25,6 +25,8 @@ const ProductCard = ({ product, onAddToCart }) => {
           {product.title || "No Title"}
         </h3>
 
+        <p className="text-xs text-gray-500 mt-1">Sold by {product.sellerName || "Marketplace"}</p>
+
         {product.brand && (
           <p className="text-xs sm:text-sm text-gray-500">{product.brand}</p>
         )}

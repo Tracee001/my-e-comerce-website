@@ -1,12 +1,28 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { getCurrentCustomer, logoutCustomer } from "../utils/auth";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
 const Navbar = () => {
   const { cartItems } = useCart();
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [customer, setCustomer] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const syncCustomer = () => setCustomer(getCurrentCustomer());
+    syncCustomer();
+    window.addEventListener("customerAuthChanged", syncCustomer);
+    return () => window.removeEventListener("customerAuthChanged", syncCustomer);
+  }, []);
+
+  const handleCustomerLogout = () => {
+    logoutCustomer();
+    window.dispatchEvent(new Event("customerAuthChanged"));
+    navigate("/customer/login");
+  };
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-gray-900 text-white shadow-md">
@@ -67,12 +83,26 @@ const Navbar = () => {
                 >
                   Nigeria Tax Policy 
                 </Link>
-                
+                <Link
+                  to="/admin/login"
+                  className="block px-4 py-2 hover:bg-gray-100 transition"
+                  onClick={() => setIsMoreOpen(false)}
+                >
+                  Admin Login
+                </Link>
               </div>
             )}
           </div>
 
-          <Link to="/login" className="hover:text-red-600 transition">Login</Link>
+          {customer ? (
+            <>
+              <Link to="/customer/account" className="hover:text-red-600 transition">My Account</Link>
+              <button onClick={handleCustomerLogout} className="hover:text-red-600 transition">Logout</button>
+            </>
+          ) : (
+            <Link to="/customer/login" className="hover:text-red-600 transition">Customer Login</Link>
+          )}
+          <Link to="/login" className="hover:text-red-600 transition">Seller Login</Link>
           <Link to="/checkout" className="hover:text-red-600 transition">
             Cart ({cartItems.length})
           </Link>
@@ -93,7 +123,16 @@ const Navbar = () => {
           <Link to="/" className="block hover:text-red-600 transition">Home</Link>
           <Link to="/about" className="block hover:text-red-600 transition">About Us</Link>
           <Link to="/contact" className="block hover:text-red-600 transition">Contact</Link>
-          <Link to="/login" className="block hover:text-red-600 transition">Login</Link>
+          {customer ? (
+            <>
+              <Link to="/customer/account" className="block hover:text-red-600 transition">My Account</Link>
+              <button onClick={handleCustomerLogout} className="block text-left hover:text-red-600 transition">Logout</button>
+            </>
+          ) : (
+            <Link to="/customer/login" className="block hover:text-red-600 transition">Customer Login</Link>
+          )}
+          <Link to="/admin/login" className="block hover:text-red-600 transition">Admin Login</Link>
+          <Link to="/login" className="block hover:text-red-600 transition">Seller Login</Link>
           <Link to="/checkout" className="block hover:text-red-600 transition">
             Cart ({cartItems.length})
           </Link>

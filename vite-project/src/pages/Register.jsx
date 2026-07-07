@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { registerSeller } from "../utils/auth";
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -7,6 +9,7 @@ const Register = () => {
     phone: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -14,7 +17,13 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Account created!");
+    try {
+      registerSeller(form);
+      alert("Account created — please log in.");
+      navigate("/login");
+    } catch (err) {
+      alert(err.message || "Unable to create account");
+    }
   };
 
   return (
