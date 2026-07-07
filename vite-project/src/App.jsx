@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ProductList from "./components/ProductList"
 import ProductDetails from "./components/ProductDetails";
@@ -16,10 +16,17 @@ import Support from "./pages/Support";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 import Register from "./pages/Register";
+import Tax from "./pages/Tax";
+import Payment from "./pages/Payment";
 
-const App = () => (
-  <CartProvider>
-    <BrowserRouter>
+const AppContent = () => {
+  const location = useLocation();
+  // Normalize path to handle trailing slash and case
+  const normalizedPath = location.pathname.replace(/\/+$/, '').toLowerCase();
+  const showFooter = normalizedPath !== "/tax";
+
+  return (
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<ProductList />} />
@@ -35,8 +42,18 @@ const App = () => (
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/tax" element={<Tax />} />
+        <Route path="/payment" element={<Payment />} />
       </Routes>
-      <Footer />
+      {showFooter && <Footer />}
+    </>
+  );
+};
+
+const App = () => (
+  <CartProvider>
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   </CartProvider>
 );

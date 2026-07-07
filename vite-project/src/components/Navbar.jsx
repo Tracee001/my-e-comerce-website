@@ -60,6 +60,14 @@ const Navbar = () => {
                 >
                   Support
                 </Link>
+                <Link
+                  to="/tax"
+                  className="block px-4 py-2 hover:bg-gray-100 transition"
+                  onClick={() => setIsMoreOpen(false)}
+                >
+                  Nigeria Tax Policy 
+                </Link>
+                
               </div>
             )}
           </div>

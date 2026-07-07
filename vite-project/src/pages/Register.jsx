@@ -62,6 +62,22 @@ const Register = () => {
           </div>
 
           <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+              User Name 
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              className="w-full px-4 py-2 border rounded-md text-gray-900 border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+              placeholder="Enter your full name"
+              value={form.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div>
             <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
               Phone Number
             </label>

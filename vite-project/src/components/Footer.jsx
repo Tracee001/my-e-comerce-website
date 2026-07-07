@@ -11,6 +11,8 @@ const Footer = () => {
           <p className="mt-3 text-sm leading-relaxed">
             <span className="italic">Discover. Desire. Deliver.</span>
             <br />
+            avaliable in ondo state, Nigeria. We are passionate about bringing you the best in fashion, food stuff, electronics, and lifestyle products.
+            <br />
             Shop the latest products with ease, comfort, and style.
           </p>
         </div>
