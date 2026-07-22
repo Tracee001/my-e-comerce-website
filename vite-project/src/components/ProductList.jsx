@@ -3,106 +3,41 @@ import ProductCard from "./ProductCard";
 import { useCart } from "../context/CartContext";
 import Hero from "./Hero";
 import { ondoSellerProducts } from "../data/ondoSellers";
+import { localFoodProducts } from "../data/localFoodProducts";
+import { convertUsdToNaira } from "../utils/currency";
 
-// Local food/groceries products (moved out of component to avoid useEffect dependency warning)
-const localFoodProducts = [
-  {
-    id: "local-1",
-    title: "Premium Palm Oil (5L)",
-    price: 3500,
-    image: "https://images.unsplash.com/photo-1589984662646-e7b2e4962f18?auto=format&fit=crop&w=400&q=80",
-    category: "groceries",
-    description: "Pure, unrefined palm oil perfect for cooking. 5 liters."
-  },
-  {
-    id: "local-2",
-    title: "Basmati Rice (5kg)",
-    price: 2800,
-    image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=400&q=80",
-    category: "groceries",
-    description: "Long grain basmati rice, premium quality. 5kg bag."
-  },
-  {
-    id: "local-3",
-    title: "Fresh Tomatoes (1kg)",
-    price: 800,
-    image: "https://images.unsplash.com/photo-1546470427-227c7369a9b4?auto=format&fit=crop&w=400&q=80",
-    category: "groceries",
-    description: "Fresh, ripe tomatoes directly from the farm. 1kg."
-  },
-  {
-    id: "local-4",
-    title: "Chicken Eggs (30 pieces)",
-    price: 1500,
-    image: "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=400&q=80",
-    category: "groceries",
-    description: "Fresh farm eggs. 30 pieces tray."
-  },
-  {
-    id: "local-5",
-    title: "Groundnut Oil (3L)",
-    price: 2200,
-    image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=400&q=80",
-    category: "groceries",
-    description: "Pure groundnut oil for cooking. 3 liters."
-  },
-  {
-    id: "local-6",
-    title: "Garri (Yellow, 5kg)",
-    price: 1800,
-    image: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=400&q=80",
-    category: "groceries",
-    description: "Processed cassava flakes (garri). 5kg bag."
-  },
-  {
-    id: "local-7",
-    title: "Fresh Onions (1kg)",
-    price: 500,
-    image: "https://images.unsplash.com/photo-1590092308527-38f5f89d0f4c?auto=format&fit=crop&w=400&q=80",
-    category: "groceries",
-    description: "Fresh red onions. 1kg."
-  },
-  {
-    id: "local-8",
-    title: "Pepper (Scotch Bonnet, 500g)",
-    price: 600,
-    image: "https://images.unsplash.com/photo-1566041827250-9c0b2802d02f?auto=format&fit=crop&w=400&q=80",
-    category: "groceries",
-    description: "Fresh scotch bonnet pepper. 500g."
-  },
-  {
-    id: "local-9",
-    title: "Semovita (5kg)",
-    price: 2500,
-    image: "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=400&q=80",
-    category: "groceries",
-    description: "Premium semovita for swallow. 5kg pack."
-  },
-  {
-    id: "local-10",
-    title: "Spaghetti (500g)",
-    price: 400,
-    image: "https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?auto=format&fit=crop&w=400&q=80",
-    category: "groceries",
-    description: "Italian spaghetti. 500g pack."
-  },
-  {
-    id: "local-11",
-    title: "Custard (500g)",
-    price: 550,
-    image: "https://images.unsplash.com/photo-1557637138-75c46b9858e4?auto=format&fit=crop&w=400&q=80",
-    category: "groceries",
-    description: "Instant custard powder. 500g."
-  },
-  {
-    id: "local-12",
-    title: "Indomie Pack (40 packs)",
-    price: 2800,
-    image: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=400&q=80",
-    category: "groceries",
-    description: "Indomie instant noodles. 40 packs carton."
-  }
+const categories = [
+  { title: "Fashion", color: "bg-orange-100", emoji: "👗" },
+  { title: "Supermarket", color: "bg-lime-100", emoji: "🛒" },
+  { title: "Electronics", color: "bg-blue-100", emoji: "📱" },
+  { title: "Home", color: "bg-sky-100", emoji: "🏠" },
+  { title: "Beauty", color: "bg-pink-100", emoji: "💄" },
+  { title: "Baby", color: "bg-violet-100", emoji: "🍼" },
+  { title: "Sports", color: "bg-teal-100", emoji: "⚽" },
+  { title: "Deals", color: "bg-red-100", emoji: "🔥" },
 ];
+
+const promoCards = [
+  {
+    title: "Awoof of the Month",
+    subtitle: "Special discounts on top picks",
+    badge: "Up to 80% off",
+    className: "bg-gradient-to-r from-orange-500 to-yellow-400 text-white",
+  },
+  {
+    title: "Clearance Sales",
+    subtitle: "Hot prices on clearance items",
+    badge: "Lowest prices",
+    className: "bg-gradient-to-r from-sky-500 to-blue-500 text-white",
+  },
+  {
+    title: "Zevoria Force",
+    subtitle: "Fast shipping, trusted sellers",
+    badge: "Best Seller",
+    className: "bg-gradient-to-r from-indigo-600 to-purple-600 text-white",
+  },
+];
+
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
@@ -123,8 +58,8 @@ const ProductList = () => {
         ]);
 
         // Prefix IDs to avoid conflicts
-        const fakeProducts = fakeRes.map((p) => ({ ...p, id: `f-${p.id}` }));
-        const dummyProducts = dummyRes.map((p) => ({ ...p, id: `d-${p.id}` }));
+        const fakeProducts = fakeRes.map((p) => ({ ...p, id: `f-${p.id}`, price: convertUsdToNaira(p.price) }));
+        const dummyProducts = dummyRes.map((p) => ({ ...p, id: `d-${p.id}`, price: convertUsdToNaira(p.price) }));
 
         // Combine all products including local food products and Ondo seller products
         const combined = [...localFoodProducts, ...ondoSellerProducts, ...fakeProducts, ...dummyProducts].map((p) => ({
@@ -157,36 +92,100 @@ const ProductList = () => {
       {/* Hero only at top */}
       <Hero />
 
-      {/* Filters */}
-      <div className="p-6">
-        <div className="mb-6 flex flex-col sm:flex-row gap-4 items-center">
-          <input
-            type="text"
-            placeholder="Search products..."
-            className="p-3 border rounded-lg w-full sm:flex-1 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+      {/* Category strip */}
+      <div className="bg-white py-4 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex gap-3 overflow-x-auto pb-2 hide-scrollbar">
+            {categories.map((categoryItem) => (
+              <button
+                key={categoryItem.title}
+                onClick={() => setCategory(categoryItem.title.toLowerCase())}
+                className={`${categoryItem.color} flex-shrink-0 rounded-2xl px-4 py-3 text-sm font-semibold shadow-sm transition hover:shadow-md`}
+              >
+                <span className="mr-2">{categoryItem.emoji}</span>
+                {categoryItem.title}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
 
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-          >
-            <option value="all">All Categories</option>
-            <option value="groceries">Groceries & Foodstuff</option>
-            <option value="electronics">Electronics</option>
-            <option value="fashion">Fashion</option>
-            <option value="phones">Phones</option>
-            <option value="men's clothing">Men's Clothing</option>
-            <option value="women's clothing">Women's Clothing</option>
-            <option value="jewelery">Jewelry</option>
-          </select>
+      {/* Promo banners */}
+      <div className="bg-gray-50 py-6">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {promoCards.map((promo) => (
+            <div key={promo.title} className={`${promo.className} rounded-3xl p-6 relative overflow-hidden shadow-lg`}>
+              <div className="absolute inset-0 opacity-20 bg-white" />
+              <div className="relative z-10">
+                <p className="text-xs uppercase tracking-[0.3em] font-bold mb-3">{promo.badge}</p>
+                <h2 className="text-xl sm:text-2xl font-extrabold mb-2">{promo.title}</h2>
+                <p className="text-sm opacity-90 mb-5">{promo.subtitle}</p>
+                <button className="bg-white text-gray-900 font-semibold rounded-full px-5 py-2 shadow-sm hover:bg-gray-100 transition">
+                  Shop Now
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 py-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-6">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Top Picks for You</h1>
+            <p className="text-sm text-gray-600 mt-1">Explore trending deals and fresh arrivals.</p>
+          </div>
+          <div className="flex gap-2 flex-wrap">
+            <button
+              onClick={() => setCategory("all")}
+              className="rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100 transition"
+            >
+              All
+            </button>
+            <button
+              onClick={() => setCategory("groceries")}
+              className="rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100 transition"
+            >
+              Groceries
+            </button>
+            <button
+              onClick={() => setCategory("electronics")}
+              className="rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100 transition"
+            >
+              Electronics
+            </button>
+          </div>
+        </div>
+
+        <div className="mb-6 bg-white rounded-3xl shadow-sm p-5">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <input
+              type="text"
+              placeholder="Search for products, brands and categories"
+              className="w-full rounded-2xl border border-gray-200 px-4 py-3 shadow-sm focus:outline-none focus:border-orange-500"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="rounded-2xl border border-gray-200 bg-white px-4 py-3 shadow-sm focus:outline-none focus:border-orange-500"
+            >
+              <option value="all">All Categories</option>
+              <option value="groceries">Groceries & Foodstuff</option>
+              <option value="electronics">Electronics</option>
+              <option value="fashion">Fashion</option>
+              <option value="phones">Phones</option>
+              <option value="men's clothing">Men's Clothing</option>
+              <option value="women's clothing">Women's Clothing</option>
+              <option value="jewelery">Jewelry</option>
+            </select>
+          </div>
         </div>
 
         {/* Products Grid */}
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {filteredProducts.map((product) => (
               <ProductCard
                 key={product.id}

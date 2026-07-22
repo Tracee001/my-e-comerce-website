@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ProductList from "./components/ProductList"
 import ProductDetails from "./components/ProductDetails";
@@ -26,6 +26,16 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import { seedDefaultSellers } from "./utils/auth";
 import { seedDefaultSellerProducts } from "./utils/products";
+
+const ScrollToTop = () => {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [pathname, hash]);
+
+  return null;
+};
 
 const AppContent = () => {
   const location = useLocation();
@@ -70,9 +80,10 @@ const AppContent = () => {
 
 const App = () => (
   <CartProvider>
-    <BrowserRouter>
+    <HashRouter>
+      <ScrollToTop />
       <AppContent />
-    </BrowserRouter>
+    </HashRouter>
   </CartProvider>
 );
 

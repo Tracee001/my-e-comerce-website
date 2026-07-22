@@ -1,41 +1,41 @@
 [
   {
-    "name": "Michael Kemi",
+    "name": "Michael Tracy",
     "role": "Founder & CEO",
-    "image": "https://randomuser.me/api/portraits/men/32.jpg",
+    "image": "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     "bio": "Visionary leader dedicated to building an e-commerce brand that redefines online shopping in Africa and beyond.",
     "socials": {
-      "linkedin": "https://linkedin.com/in/michaelkemi",
-      "twitter": "https://twitter.com/michaelkemi",
-      "instagram": "https://instagram.com/michaelkemi"
+      "linkedin": "https://linkedin.com/in/michaeltracy",
+      "twitter": "https://twitter.com/michaeltracy",
+      "instagram": "https://instagram.com/michaeltracy"
     }
   },
   {
-    "name": "Sarah Johnson",
+    "name": "Kemi Adelewa",
     "role": "Head of Marketing",
-    "image": "https://randomuser.me/api/portraits/women/44.jpg",
+    "image": "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     "bio": "Passionate about connecting people to products they love through modern branding and digital campaigns.",
     "socials": {
-      "linkedin": "https://linkedin.com/in/sarahjohnson",
-      "twitter": "https://twitter.com/sarahjohnson",
-      "instagram": "https://instagram.com/sarahjohnson"
+      "linkedin": "https://linkedin.com/in/Kemi Adelewa",
+      "twitter": "https://twitter.com/Kemi Adelewa",
+      "instagram": "https://instagram.com/Kemi Adelewa"
     }
   },
   {
-    "name": "David Lee",
+    "name": "David Oshodi",
     "role": "Chief Technology Officer",
-    "image": "https://randomuser.me/api/portraits/men/75.jpg",
+    "image": "https://images.pexels.com/photos/1181691/pexels-photo-1181691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     "bio": "Focused on innovation, user experience, and building scalable platforms that empower seamless shopping.",
     "socials": {
-      "linkedin": "https://linkedin.com/in/davidlee",
-      "twitter": "https://twitter.com/davidlee",
-      "instagram": "https://instagram.com/davidlee"
+      "linkedin": "https://linkedin.com/in/davidoshodi",
+      "twitter": "https://twitter.com/davidoshodi",
+      "instagram": "https://instagram.com/davidoshodi"
     }
   },
   {
     "name": "Amaka Chukwu",
     "role": "Customer Experience Manager",
-    "image": "https://randomuser.me/api/portraits/women/68.jpg",
+    "image": "https://images.pexels.com/photos/1181692/pexels-photo-1181692.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     "bio": "Committed to ensuring every customer interaction with Zevoria is smooth, helpful, and memorable.",
     "socials": {
       "linkedin": "https://linkedin.com/in/amakachukwu",
@@ -44,20 +44,20 @@
     }
   },
   {
-    "name": "Liam O'Connor",
+    "name": "John Adebayo",
     "role": "Logistics & Operations Lead",
-    "image": "https://randomuser.me/api/portraits/men/76.jpg",
+    "image": "https://images.pexels.com/photos/1181693/pexels-photo-1181693.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     "bio": "Expert in supply chain management, ensuring timely delivery and efficient operations across all markets.",
     "socials": {
-      "linkedin": "https://linkedin.com/in/liamoconnor",
-      "twitter": "https://twitter.com/liamoconnor",
-      "instagram": "https://instagram.com/liamoconnor"
+      "linkedin": "https://linkedin.com/in/johnadebayo",
+      "twitter": "https://twitter.com/johnadebayo",
+      "instagram": "https://instagram.com/johnadebayo"
     }
   },
   {
     "name": "Aisha Bello",
     "role": "Product Development Specialist",
-    "image": "https://randomuser.me/api/portraits/women/69.jpg",
+    "image": "https://images.pexels.com/photos/1181694/pexels-photo-1181694.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     "bio": "Passionate about creating innovative products that enhance the shopping experience and meet customer needs.",
     "socials": {
       "linkedin": "https://linkedin.com/in/aishabello",
@@ -68,7 +68,7 @@
   {
     "name": "Carlos Mendes",
     "role": "Finance Director",
-    "image": "https://randomuser.me/api/portraits/men/45.jpg",
+    "image": "https://images.pexels.com/photos/1181695/pexels-photo-1181695.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     "bio": "Strategic thinker with a knack for numbers, dedicated to driving financial success and sustainability.",
     "socials": {
       "linkedin": "https://linkedin.com/in/carlosmendes",
@@ -77,14 +77,14 @@
     }
   },
   {
-    "name": "Emily Zhang",
+    "name": "Emily Femi",
     "role": "Creative Director",
-    "image": "https://randomuser.me/api/portraits/women/45.jpg",
+    "image": "https://images.pexels.com/photos/1181696/pexels-photo-1181696.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     "bio": "Innovative thinker with a passion for design, dedicated to creating visually stunning and effective marketing campaigns.",
     "socials": {
-      "linkedin": "https://linkedin.com/in/emilyzhang",
-      "twitter": "https://twitter.com/emilyzhang",
-      "instagram": "https://instagram.com/emilyzhang"
+      "linkedin": "https://linkedin.com/in/emilyfemi",
+      "twitter": "https://twitter.com/emilyfemi",
+      "instagram": "https://instagram.com/emilyfemi"
     }
   }
 ]

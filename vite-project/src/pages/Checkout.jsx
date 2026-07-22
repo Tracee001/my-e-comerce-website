@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { getCurrentCustomer } from "../utils/auth";
+import { formatNaira } from "../utils/currency";
 import { Trash2, Plus, Minus, ShoppingCart } from "lucide-react";
 
 const Checkout = () => {
@@ -14,17 +15,7 @@ const Checkout = () => {
     return sum + (price * item.qty);
   }, 0);
   
-  // Check if items are local (Naira) or dollar
-  const hasLocalItems = cartItems.some(item => item.id && item.id.startsWith("local-"));
-  const isNaira = hasLocalItems;
-  
-  // Format price based on currency
-  const formatPrice = (price) => {
-    if (isNaira) {
-      return `₦${price.toLocaleString()}`;
-    }
-    return `$${price.toFixed(2)}`;
-  };
+  const formatPrice = (price) => formatNaira(price);
   
   // Calculate delivery fee (free above certain amount)
   const deliveryFee = subtotal > 5000 ? 0 : 500;
